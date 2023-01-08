@@ -55,6 +55,6 @@ def score(data):
         level = 5
     return {
         'statusCode': 200,
-        'body': json.dumps({'applicant_id': feat_dict["id"], 'level': level, 'score': fans})}
+        'body': json.dumps({'applicant_id': feat_dict["applicant_id"], 'level': level, 'score': fans})}
 
 
