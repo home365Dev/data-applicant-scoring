@@ -1,3 +1,4 @@
+import json
 import logging
 import threading
 
@@ -26,8 +27,11 @@ def healthcheck():
 @app.post("/data_applicant_scoring")
 async def data_applicant_scoring(request: Request):
     body = await request.json()
-    thread = threading.Thread(target=dbh.execute_to_db, kwargs={'id': body["body"]["id"], 'data': body["body"]})
-    return execute(body)
+    response = execute(body)
+    rsp = json.loads(response)
+    thread = threading.Thread(target=dbh.execute_to_db, kwargs={'id': rsp["body"]["id"], 'data': rsp["body"]})
+    thread.start()
+    return response
     
 app.include_router(router, prefix="/data_applicant_scoring")
 
