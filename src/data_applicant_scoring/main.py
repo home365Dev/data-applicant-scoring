@@ -1,9 +1,11 @@
 import logging
+import threading
+
 import watchtower
 
 from fastapi import Request, FastAPI, APIRouter
 
-
+import src.data_applicant_scoring.db_handler as dbh
 from src.data_applicant_scoring.app import execute
 
 logger = logging.getLogger(__name__)
@@ -21,11 +23,12 @@ app = FastAPI(
 def healthcheck():
     return {"status": "ok"}
 
-@app.post("/data-applicant-scoring")
+@app.post("/data_applicant_scoring")
 async def data_applicant_scoring(request: Request):
     body = await request.json()
+    thread = threading.Thread(target=dbh.execute_to_db, kwargs={'id': body["body"]["id"], 'data': body["body"]})
     return execute(body)
     
-app.include_router(router, prefix="/data-applicant-scoring")
+app.include_router(router, prefix="/data_applicant_scoring")
 
 logger.info("Starting up")
