@@ -9,6 +9,7 @@ env:
   ECR_REPOSITORY: data-applicant-scoring           
   ECS_SERVICE: data-applicant-scoring               
   ECS_CLUSTER: functional-micro-services
+  ECS_CLUSTER_DEV: functional-micro-services
   ECS_TASK_DEFINITION:  deployment/task_def.json 
 
   CONTAINER_NAME: data-applicant-scoring  
@@ -69,3 +70,11 @@ jobs:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
         service: ${{ env.ECS_SERVICE }}
         cluster: ${{ env.ECS_CLUSTER }}
+        
+    - name: DEV Deploy Amazon ECS task definition
+      if: ${{ github.ref == 'refs/heads/develop' }}
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      with:
+        task-definition: ${{ steps.task-def.outputs.task-definition }}
+        service: ${{ env.ECS_SERVICE }}
+        cluster: ${{ env.ECS_CLUSTER_DEV }}
