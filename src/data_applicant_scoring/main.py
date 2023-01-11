@@ -33,6 +33,6 @@ async def data_applicant_scoring(request: Request):
     thread.start()
     return response
     
-app.include_router(router, prefix="/data_applicant_scoring")
+app.include_router(router, prefix="/data-applicant-scoring")
 
 logger.info("Starting up")
