@@ -11,6 +11,7 @@ RUN groupadd -f -g 1000 $USER && useradd -m $USER --gid 1000 && chown -R $USER:$
 
 RUN apt-get update
 RUN apt-get install -y curl
+RUN apt-get install -y curl g++ unixodbc-dev
 
 COPY --chown=$USER:$USER ./requirements.txt ./requirements.base.txt $WORKDIR
 
