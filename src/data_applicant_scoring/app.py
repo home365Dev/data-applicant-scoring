@@ -29,6 +29,8 @@ def execute(data: dict):
 def score(data):
     LOGGER.info("Hello World")
     feat_dict = data
+    pid = feat_dict["applicant_id"]
+    feat_dict.pop("applicant_id", None)
     feat_dict["credit_score"] = feat_dict["credit_score"] / 1000
     feat_dict["age"] = feat_dict["age"] / 85
     mod = pd.DataFrame([feat_dict])
@@ -55,6 +57,6 @@ def score(data):
         level = 5
     return {
         'statusCode': 200,
-        'body': json.dumps({'applicant_id': feat_dict["applicant_id"], 'level': level, 'score': fans})}
+        'body': json.dumps({'applicant_id': pid, 'level': level, 'score': fans})}
 
 
