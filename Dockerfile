@@ -22,5 +22,5 @@ COPY --chown=$USER:$USER src/ $WORKDIR/src/
 RUN apt-get clean && apt-get autoclean
 RUN echo 'export $(strings /proc/1/environ | grep AWS_CONTAINER_CREDENTIALS_RELATIVE_URI)' >> /root/.profile
 
-CMD ["uvicorn", "src.data-applicant-scoring.main:app", "--host", "0.0.0.0", "--port", "80"]
+CMD ["uvicorn", "src.data_applicant_scoring.main:app", "--host", "0.0.0.0", "--port", "80"]
 
