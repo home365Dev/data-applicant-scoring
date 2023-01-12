@@ -29,6 +29,7 @@ async def data_applicant_scoring(request: Request):
     body = await request.json()
     response = execute(body)
     rsp = json.loads(response["body"])
+    print(rsp)
     thread = threading.Thread(target=dbh.execute_to_db, kwargs={'applicant_id': rsp["applicant_id"], 'data': rsp})
     thread.start()
     return response
