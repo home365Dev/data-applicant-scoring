@@ -36,7 +36,7 @@ def score(data):
     feat_dict["age"] = feat_dict["age"] / 85
     mod = pd.DataFrame([feat_dict])
     model = pickle.load(open("src/data_applicant_scoring/tenant_score_ml_model", 'rb'))
-    ans = model.predict(mod)
+    ans = model.predict(mod)[0]
     print("tenant scoring: ")
     if ans > 1:
         fans = 100
@@ -58,6 +58,11 @@ def score(data):
         level = 5
     return {
         'statusCode': 200,
-        'body': json.dumps({'applicant_id': str(pid), 'level': level, 'score': fans})}
+        'body': json.dumps(dict({'applicant_id': str(pid), 'level': level, 'score': fans}))}
 
 
+# score({"applicant_id": "BC5T2A09-ELE2-4HG0-AE74-4E2DF78A3E1D",
+#         "credit_score": 678,
+#         "eviction": 2,
+#         "criminal": 1,
+#         "age": 28})
