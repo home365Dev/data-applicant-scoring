@@ -24,7 +24,7 @@ app = FastAPI(
 def healthcheck():
     return {"status": "ok"}
 
-@app.post("/data_applicant_scoring")
+@router.post("/data_applicant_scoring")
 async def data_applicant_scoring(request: Request):
     body = await request.json()
     response = execute(body)
