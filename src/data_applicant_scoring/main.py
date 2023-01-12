@@ -28,7 +28,7 @@ def healthcheck():
 async def data_applicant_scoring(request: Request):
     body = await request.json()
     response = execute(body)
-    rsp = json.loads(response)
+    rsp = json.loads(response["body"])
     thread = threading.Thread(target=dbh.execute_to_db, kwargs={'id': rsp["body"]["id"], 'data': rsp["body"]})
     thread.start()
     return response
