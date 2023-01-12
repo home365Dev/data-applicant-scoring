@@ -58,6 +58,6 @@ def score(data):
         level = 5
     return {
         'statusCode': 200,
-        'body': json.dumps(dict({'applicant_id': pid, 'level': level, 'score': fans}))}
+        'body': json.dumps({'applicant_id': str(pid), 'level': level, 'score': fans})}
 
 
