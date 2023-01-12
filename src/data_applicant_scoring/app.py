@@ -34,7 +34,7 @@ def score(data):
     feat_dict["credit_score"] = feat_dict["credit_score"] / 1000
     feat_dict["age"] = feat_dict["age"] / 85
     mod = pd.DataFrame([feat_dict])
-    model = pickle.load(open("tenant_score_ml_model", 'rb'))
+    model = pickle.load(open("src/data_applicant_scoring/tenant_score_ml_model", 'rb'))
     ans = model.predict(mod)
     print("tenant scoring: ")
     if ans > 1:
