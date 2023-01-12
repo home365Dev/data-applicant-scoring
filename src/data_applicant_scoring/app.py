@@ -3,6 +3,7 @@ import logging
 import pandas as pd
 import json
 import pickle
+import sklearn
 
 
 LOGGER = logging.getLogger(__name__)
