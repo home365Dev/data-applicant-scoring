@@ -50,3 +50,5 @@ if __name__ == '__main__':
     thread = threading.Thread(target=dbh.execute_to_db, kwargs={
         'jsono': response, 'jsoni': jst, 'output_vendors': json_vendors, 'state': state})
     thread.start()
+
+    noam = "noam"
