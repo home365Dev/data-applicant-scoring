@@ -48,7 +48,7 @@
                 "retries": 3,
                 "command": [
                     "CMD-SHELL",
-                    "curl -f http: //localhost/data-applicant-scoring/healthcheck || exit 1"
+                    "curl -f http://localhost/data-applicant-scoring/healthcheck || exit 1"
                 ],
                 "timeout": 10,
                 "interval": 60,
